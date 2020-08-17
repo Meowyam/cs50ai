@@ -103,7 +103,6 @@ def shortest_path(source, target):
     # initialise explored set, is empty for now
     explored = set()
 
-    # loop
     while True:
         # no possible path
         if frontier.empty():
@@ -117,7 +116,10 @@ def shortest_path(source, target):
                 child = Node(state=state, parent=node, action=action)
                 # if child is goal, put in path
                 if child.state == target:
-                    path.insert(0, (child.action, child.state))
+                    # loop
+                    while child.parent is not None:
+                        path.insert(0, (child.action, child.state))
+                        child = child.parent
                     return path
                 else:
                     frontier.add(child)
