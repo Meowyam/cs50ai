@@ -13,6 +13,7 @@ def initial_state():
     """
     Returns starting state of the board.
     """
+    # it's basically 3 lists of 3
     return [[EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY]]
 
 
@@ -20,13 +21,20 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    raise NotImplementedError
+    flatBoard = [cell for row in board for cell in row]
+    if flatBoard.count(X) > flatBoard.count(O):
+        return O
+    elif (flatBoard.count(X) < flatBoard.count(O)) or 0:
+        return X
+    else:
+        return True
 
 
 def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
+    action_set = set()
     raise NotImplementedError
 
 
@@ -48,7 +56,8 @@ def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    raise NotImplementedError
+    if winner(board) is not None:
+        return True
 
 
 def utility(board):
