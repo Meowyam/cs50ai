@@ -122,7 +122,7 @@ def max_val(board):
 def min_val(board):
     if terminal(board):
         return utility(board)
-    m = float("-inf")
+    m = float("inf")
     for action in actions(board):
         m = min(m, max_val(result(board, action)))
     return m
